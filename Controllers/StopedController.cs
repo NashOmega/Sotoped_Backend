@@ -169,33 +169,33 @@ namespace Sotoped.Controllers
 
                 if (dbSpectator.PainParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Pain.docx", false, null, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Pain.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_PC_D_{dbSpectator.FullName}.pdf"));
                 }
                 if (dbSpectator.NephrologicParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Nephrologic.docx", false, null, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Nephrologic.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_PC_N_{dbSpectator.FullName}.pdf"));
                 }
                 if (dbSpectator.CongressParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Congress.docx", false, null, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Congress.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_Congres_{dbSpectator.FullName}.pdf"));
                 }
                 if (!string.IsNullOrWhiteSpace(dbSpectator.FirstCommunication))
                 {
                     var suffix = !string.IsNullOrWhiteSpace(dbSpectator.SecondCommunication) ? "1_" : string.Empty;
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.FirstCommunication, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.FirstCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_Com_{suffix}{dbSpectator.FullName}.pdf"));
                 }
                 if (!string.IsNullOrWhiteSpace(dbSpectator.SecondCommunication))
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.SecondCommunication, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.SecondCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_Com_2_{dbSpectator.FullName}.pdf"));
                 }
                 if (!string.IsNullOrWhiteSpace(dbSpectator.ThirdCommunication))
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.ThirdCommunication, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.ThirdCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_Com_3_{dbSpectator.FullName}.pdf"));
                 }
                 if (pdfFiles.Count == 0) return BadRequest("Aucun certificat à générer.");
@@ -240,38 +240,38 @@ namespace Sotoped.Controllers
 
                 if (certificateRequest.PainParticipation && dbSpectator.PainParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Pain.docx", false, null, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Pain.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_PC_D_{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
                 if (certificateRequest.NephrologicParticipation && dbSpectator.NephrologicParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Nephrologic.docx", false, null, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Nephrologic.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_PC_N_{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
                 if (certificateRequest.CongressParticipation && dbSpectator.CongressParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Congress.docx", false, null, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Congress.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_Congres_{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
                 if (certificateRequest.FirstCommunication && !string.IsNullOrWhiteSpace(dbSpectator.FirstCommunication))
                 {
                     var suffix = !string.IsNullOrWhiteSpace(dbSpectator.SecondCommunication) ? "1_" : string.Empty;
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.FirstCommunication, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.FirstCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_Com_{suffix}{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
                 if (certificateRequest.SecondCommunication && !string.IsNullOrWhiteSpace(dbSpectator.SecondCommunication))
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.SecondCommunication, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.SecondCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_Com_2_{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
                 if (certificateRequest.ThirdCommunication && !string.IsNullOrWhiteSpace(dbSpectator.ThirdCommunication))
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.ThirdCommunication, dbSpectator.FullName);
+                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.ThirdCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_Com_3_{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
@@ -332,7 +332,7 @@ namespace Sotoped.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erreur lors de la génération du certificat : {Message}", ex.Message);
-                return null;
+                return [];
             }
         }
         private void ReplaceBookmarkText(MainDocumentPart mainPart, string bookmarkName, string newText)
