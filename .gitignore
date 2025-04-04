@@ -1,0 +1,46 @@
+# Fichiers temporaires de Visual Studio
+.vs/
+.vscode/
+
+# Build / Bin / Objet
+bin/
+obj/
+
+# Fichiers de logs et caches
+*.log
+*.tlog
+*.cache
+*.pdb
+*.ilk
+
+# Configurations locales utilisateur
+*.user
+*.suo
+*.sdf
+*.ldb
+
+# Données de lock
+.lock.json
+
+# Packages et dépendances
+**/node_modules/
+**/packages/
+*.nupkg
+project.lock.json
+project.assets.json
+
+# Fichiers de publication
+publish/
+dist/
+
+# Secrets et paramètres spécifiques à l’environnement
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Fichiers spécifiques à Render et aux conteneurs Docker
+Dockerfile
+docker-compose.yml
+.env
+.env.local
+.env.development
