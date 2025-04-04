@@ -21,6 +21,8 @@ RUN dotnet publish "./Sotoped.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p
 
 FROM base AS final
 WORKDIR /app
+COPY Certificate/ /app/Certificate/
+COPY License/ /app/License/
 COPY --from=publish /app/publish .
 
 ENTRYPOINT ["dotnet", "Sotoped.dll"]

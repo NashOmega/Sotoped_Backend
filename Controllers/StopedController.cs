@@ -169,33 +169,33 @@ namespace Sotoped.Controllers
 
                 if (dbSpectator.PainParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Pain.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Pain.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_PC_D_{dbSpectator.FullName}.pdf"));
                 }
                 if (dbSpectator.NephrologicParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Nephrologic.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Nephrologic.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_PC_N_{dbSpectator.FullName}.pdf"));
                 }
                 if (dbSpectator.CongressParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Congress.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Congress.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_Congres_{dbSpectator.FullName}.pdf"));
                 }
                 if (!string.IsNullOrWhiteSpace(dbSpectator.FirstCommunication))
                 {
                     var suffix = !string.IsNullOrWhiteSpace(dbSpectator.SecondCommunication) ? "1_" : string.Empty;
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.FirstCommunication, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Communication.docx", true, dbSpectator.FirstCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_Com_{suffix}{dbSpectator.FullName}.pdf"));
                 }
                 if (!string.IsNullOrWhiteSpace(dbSpectator.SecondCommunication))
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.SecondCommunication, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Communication.docx", true, dbSpectator.SecondCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_Com_2_{dbSpectator.FullName}.pdf"));
                 }
                 if (!string.IsNullOrWhiteSpace(dbSpectator.ThirdCommunication))
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.ThirdCommunication, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Communication.docx", true, dbSpectator.ThirdCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles.Add((fileBytes, $"AT_Com_3_{dbSpectator.FullName}.pdf"));
                 }
                 if (pdfFiles.Count == 0) return BadRequest("Aucun certificat à générer.");
@@ -240,38 +240,38 @@ namespace Sotoped.Controllers
 
                 if (certificateRequest.PainParticipation && dbSpectator.PainParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Pain.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Pain.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_PC_D_{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
                 if (certificateRequest.NephrologicParticipation && dbSpectator.NephrologicParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Nephrologic.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Nephrologic.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_PC_N_{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
                 if (certificateRequest.CongressParticipation && dbSpectator.CongressParticipation)
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Congress.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Congress.docx", false, string.Empty, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_Congres_{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
                 if (certificateRequest.FirstCommunication && !string.IsNullOrWhiteSpace(dbSpectator.FirstCommunication))
                 {
                     var suffix = !string.IsNullOrWhiteSpace(dbSpectator.SecondCommunication) ? "1_" : string.Empty;
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.FirstCommunication, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Communication.docx", true, dbSpectator.FirstCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_Com_{suffix}{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
                 if (certificateRequest.SecondCommunication && !string.IsNullOrWhiteSpace(dbSpectator.SecondCommunication))
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.SecondCommunication, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Communication.docx", true, dbSpectator.SecondCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_Com_2_{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
                 if (certificateRequest.ThirdCommunication && !string.IsNullOrWhiteSpace(dbSpectator.ThirdCommunication))
                 {
-                    byte[] fileBytes = await GenerateCertificateAsync("./Certificate/Communication.docx", true, dbSpectator.ThirdCommunication, dbSpectator.FullName ?? string.Empty);
+                    byte[] fileBytes = await GenerateCertificateAsync("Certificate/Communication.docx", true, dbSpectator.ThirdCommunication, dbSpectator.FullName ?? string.Empty);
                     pdfFiles = new FileResponse(true, fileBytes, $"AT_Com_3_{dbSpectator.FullName}.pdf");
                     return Ok(pdfFiles);
                 }
@@ -286,53 +286,45 @@ namespace Sotoped.Controllers
 
         private async Task<byte[]> GenerateCertificateAsync(string path, bool hasCommunication, string communication, string spectatorFullName)
         {
-            try
+            if (!System.IO.File.Exists(path))
             {
-                if (!System.IO.File.Exists(path))
-                {
-                    throw new FileNotFoundException("Le fichier Word spécifié est introuvable.", path);
-                }
-
-                using (MemoryStream resultStream = new MemoryStream())
-                {
-                    using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
-                    {
-                        await fileStream.CopyToAsync(resultStream);
-                    }
-
-                    using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(resultStream, true))
-                    {
-                        MainDocumentPart mainPart = wordDoc.MainDocumentPart;
-                        if (mainPart == null)
-                        {
-                            throw new Exception("Impossible de trouver le contenu du document.");
-                        }
-
-                        ReplaceBookmarkText(mainPart, "FullName", spectatorFullName);
-                        if (hasCommunication)
-                        {
-                            ReplaceBookmarkText(mainPart, "Communication", communication);
-                        }
-
-                        wordDoc.Save();
-                    }
-
-                    using (MemoryStream convertedPdfStream = new MemoryStream())
-                    {
-                        Aspose.Words.License lic = new Aspose.Words.License();
-                        lic.SetLicense(@"License/Aspose.Words.NET.lic");
-
-                        var document = new Aspose.Words.Document(resultStream);
-                        document.Save(convertedPdfStream, Aspose.Words.SaveFormat.Pdf);
-
-                        return convertedPdfStream.ToArray();
-                    }
-                }
+                throw new FileNotFoundException("Le fichier Word spécifié est introuvable.", path);
             }
-            catch (Exception ex)
+
+            using (MemoryStream resultStream = new MemoryStream())
             {
-                _logger.LogError(ex, "Erreur lors de la génération du certificat : {Message}", ex.Message);
-                return [];
+                using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
+                {
+                    await fileStream.CopyToAsync(resultStream);
+                }
+
+                using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(resultStream, true))
+                {
+                    MainDocumentPart mainPart = wordDoc.MainDocumentPart;
+                    if (mainPart == null)
+                    {
+                        throw new Exception("Impossible de trouver le contenu du document.");
+                    }
+
+                    ReplaceBookmarkText(mainPart, "FullName", spectatorFullName);
+                    if (hasCommunication)
+                    {
+                        ReplaceBookmarkText(mainPart, "Communication", communication);
+                    }
+
+                    wordDoc.Save();
+                }
+
+                using (MemoryStream convertedPdfStream = new MemoryStream())
+                {
+                    Aspose.Words.License lic = new Aspose.Words.License();
+                    lic.SetLicense(@"License/Aspose.Words.NET.lic");
+
+                    var document = new Aspose.Words.Document(resultStream);
+                    document.Save(convertedPdfStream, Aspose.Words.SaveFormat.Pdf);
+
+                    return convertedPdfStream.ToArray();
+                }
             }
         }
         private void ReplaceBookmarkText(MainDocumentPart mainPart, string bookmarkName, string newText)
@@ -369,7 +361,7 @@ namespace Sotoped.Controllers
                 var tempCode = new string(Enumerable.Range(0, 6)
                     .Select(_ => chars[random.Next(chars.Length)])
                     .ToArray());
-     
+
                 if (oldCodes == null || (oldCodes != null && !oldCodes.Contains(tempCode))) newCode = tempCode;
             }
 
