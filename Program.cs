@@ -8,6 +8,8 @@ builder.WebHost.ConfigureKestrel(options =>
     var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
     options.ListenAnyIP(int.Parse(port));
 });
+Console.WriteLine($"Connection String: {builder.Configuration.GetConnectionString("DefaultConnection")}");
+
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddControllers();
