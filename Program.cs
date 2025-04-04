@@ -29,6 +29,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 app.InitializeDbTestDataAsync();
 
+app.UseCors("MyCorsPolicy");
 app.UseSwagger();
 app.UseSwaggerUI();
 
