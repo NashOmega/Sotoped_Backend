@@ -6,6 +6,13 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
+RUN apt-get update \
+    && apt-get -y install gss-ntlmssp apt-utils libgdiplus libc6-dev locales \
+    && locale-gen fr_FR.UTF-8 \
+    && echo "LANG=fr_FR.UTF-8" > /etc/default/locale \
+    && echo "LC_ALL=fr_FR.UTF-8" >> /etc/default/locale \
+    && ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
+
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
