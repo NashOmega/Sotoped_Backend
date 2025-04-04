@@ -9,10 +9,10 @@ namespace Sotoped.Configuration
         public static void AddDatabaseConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
-
+            var connectionString = Environment.GetEnvironmentVariable("DefaultConnection") ?? configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<SotopedContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(connectionString);
             });
         }
 
