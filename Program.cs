@@ -24,11 +24,15 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 //app.UseHttpsRedirection();
-app.UseCors(policy =>
-    policy.AllowAnyOrigin()
-          .AllowAnyMethod()
-          .AllowAnyHeader());
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyCorsPolicy", policy =>
+    {
+        policy.WithOrigins("https://congres-sotoped.onrender.com")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 app.UseAuthorization();
 app.MapControllers();
 
