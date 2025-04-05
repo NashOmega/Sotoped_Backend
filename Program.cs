@@ -19,6 +19,13 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
+
+    options.AddPolicy("AllowAllOriginsForRoot", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
 });
 
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
@@ -30,12 +37,13 @@ var app = builder.Build();
 app.InitializeDbTestDataAsync();
 
 app.UseCors("MyCorsPolicy");
+app.MapGet("/", () => "API is running!")
+   .RequireCors("AllowAllOriginsForRoot");
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseAuthorization();
 app.MapControllers();
-
-app.MapGet("/", () => "API is running!");
 
 app.Run();
